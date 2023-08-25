@@ -15,11 +15,6 @@ let listaContactos = [{
 function agregarContacto (nuevoContacto){
   listaContactos.push(nuevoContacto)
 }
-// agregarContacto("LuisBacca");
-// agregarContacto("SofiaMuñoz");
-
-// console.log(listaContactos);
-
 // // // Crea una función para borrar un contacto existente de la lista
 function borrarContacto(contactoABorrar){
   let nuevaLista = listaContactos.filter(
@@ -27,17 +22,24 @@ function borrarContacto(contactoABorrar){
   listaContactos = nuevaLista
 }
 
-// // borrarContacto ("AlejandraLopez")
-
-// // console.log(listaContactos);
-
 // // // Crea una función para imprimir en consola los contactos presentes en la lista
 
 function imprimirContactos (){
   console.log(listaContactos);
 }
 
-let nuevoContacto= {
+function editarContacto(idBuscado, nuevosDatos) {
+  let contactoIndex = listaContactos.findIndex(contacto => contacto.id === idBuscado);
+
+  if (contactoIndex !== -1) {
+    Object.assign(listaContactos[contactoIndex], nuevosDatos);
+    console.log(`Contacto con ID '${idBuscado}' editado exitosamente.`);
+  } else {
+    console.log(`No se encontró el contacto con ID '${idBuscado}'.`);
+  }
+} 
+
+let nuevoContacto2= {
   id :2,
   nombre: "Maria",
   apellido: "Muñoz",
@@ -47,8 +49,19 @@ let nuevoContacto= {
     direccion:"mz c casa 7",}
 }
 
+let nuevoContacto3= {
+  id :3,
+  nombre: "Marcela",
+  apellido: "Muñoz",
+  telefono: "3146406471",
+  ubicaciones: {
+    ciudad: "cali",
+    direccion:"casa 13",}
+}
 
-// agregarContacto(nuevoContacto);
-borrarContacto(2);
+
+agregarContacto(nuevoContacto2);
+agregarContacto(nuevoContacto3);
+// borrarContacto(2);
+editarContacto(1, { nombre: 'Luis', apellido: 'Bacca', telefono: '3225002820', ubicaciones: { ciudad:'nariño', direccion:'casa 19'}});
 imprimirContactos()
-// // Publica tu código en Github, en tu repositorio contact-list crea un branch llamado project-1 y compártelo con nosotros. 👍🏼⬇️
